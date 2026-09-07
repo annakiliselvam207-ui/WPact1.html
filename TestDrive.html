@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Test Drive - NN27 Motors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="logo.jpg.jpeg" alt="NN27 Motors Logo">
+
+    <nav>
+        <a href="Home.html">Home</a>
+        <a href="Cars.html">Cars</a>
+        <a href="About.html">About Us</a>
+        <a href="Services.html">Services</a>
+        <a href="Contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="test-drive">
+
+    <h1>Book a Test Drive</h1>
+
+    <p>Experience your dream car at NN27 Motors.</p>
+    <div id="message"></div>
+
+    <form onsubmit="return bookTestDrive()">
+
+        <label>Full Name</label><br>
+        <input type="text" id="name" placeholder="Enter your name" required><br><br>
+
+        <label>Email</label><br>
+        <input type="email" id="email" placeholder="Enter your email" required><br><br>
+
+        <label>Phone Number</label><br>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required><br><br>
+
+        <label>Select Your Dream Car</label><br>
+        <select id="car" required>
+            <option value="">-- Select a Car --</option>
+            <option>BMW 3 Series</option>
+            <option>Mercedes-Benz C-Class</option>
+            <option>Audi A4</option>
+            <option>Rolls-Royce Phantom</option>
+            <option>Ferrari 296 GTB</option>
+        </select><br><br>
+
+        <label>Preferred Date</label><br>
+        <input type="date" id="date" required><br><br>
+
+        <label>Preferred Time</label><br>
+        <input type="time" id="time" required><br><br>
+
+        <button type="submit">Confirm Test Drive</button>
+
+    </form>
+
+</section>
+<script>
+
+function bookTestDrive() {
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let car = document.getElementById("car").value;
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let phonePattern = /^[6-9][0-9]{9}$/;
+
+    let message = document.getElementById("message");
+
+    if (!emailPattern.test(email)) {
+        message.className = "error-message";
+        message.innerHTML = "⚠️ Please enter a valid email address.";
+        return false;
+    }
+
+    if (!phonePattern.test(phone)) {
+        message.className = "error-message";
+        message.innerHTML = "⚠️ Please enter a valid 10-digit mobile number.";
+        return false;
+    }
+
+    message.className = "success-message";
+    message.innerHTML =
+        "✅ Test Drive Booked Successfully!<br><br>" +
+        "Customer: " + name + "<br>" +
+        "Car: " + car + "<br>" +
+        "Date: " + date + "<br>" +
+        "Time: " + time;
+
+    return false;
+}
+
+</script>
+</body>
+</html>
